@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import React from "react";
 import DayList from "./DayList";
 import "components/Application.scss";
 import Appointment from "components/Appointment/index";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
-// import useVisualMode from "hooks/useVisualMode";
 
 export default function Application() {
   
@@ -15,7 +13,7 @@ export default function Application() {
     bookInterview,
     cancelInterview
   } = useApplicationData();
-  
+
   return (
     <main className="layout">
       <section className="sidebar">
