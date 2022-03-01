@@ -3,14 +3,16 @@ import axios from 'axios';
 import DayList from "./DayList";
 import "components/Application.scss";
 import Appointment from "components/Appointment/index";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+// import useVisualMode from "hooks/useVisualMode";
 
 export default function Application() {
   
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   })
 
   const setDay = day => setState({ ...state, day });
@@ -25,7 +27,54 @@ export default function Application() {
       setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     });
 
-  }, []); 
+  }, []);
+
+  const bookInterview = (id, interview) => {
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    
+    return axios.put(`/api/appointments/${id}`, appointment)
+      .then(response => {
+        setState({
+          ...state,
+          appointments
+        });
+        console.log(response);
+        })
+
+  };
+
+  const cancelInterview = (id) => {
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    }
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+
+    return axios.delete(`/api/appointments/${id}`)
+      .then(response => {
+        setState({
+          ...state,
+          appointments
+        });
+        console.log(response);
+        })
+
+  }
   
   return (
     <main className="layout">
@@ -51,8 +100,9 @@ export default function Application() {
       </section>
       <section className="schedule">
         {getAppointmentsForDay(state, state.day).map(item => {
+          const interview = getInterview(state, item.interview);
           return (
-            <Appointment key={item.id} {...item}
+            <Appointment key={item.id} {...item} interview={interview} interviewers={getInterviewersForDay(state, state.day)} bookInterview = {bookInterview} cancelInterview = {cancelInterview}
             />
           );
         })}
