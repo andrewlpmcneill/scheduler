@@ -39,11 +39,14 @@ export default function useApplicationData() {
     
     return axios.put(`/api/appointments/${id}`, appointment)
       .then(response => {
-        setState({
-          ...state,
-          appointments
-        });
+
+        setState(prev => ({
+          ...prev,
+          appointments,
+          days: prev.days.map(day => day.appointments.includes(id) ? {...day, spots: day.spots - 1} : day)
+        }));
         console.log(response);
+
         })
 
   };
@@ -62,10 +65,11 @@ export default function useApplicationData() {
 
     return axios.delete(`/api/appointments/${id}`)
       .then(response => {
-        setState({
+        setState(prev => ({
           ...state,
-          appointments
-        });
+          appointments,
+          days: prev.days.map(day => day.appointments.includes(id) ? {...day, spots: day.spots + 1} : day)
+        }));
         console.log(response);
         })
 
