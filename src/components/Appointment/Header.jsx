@@ -9,7 +9,7 @@ export default function Header(props) {
         {props.time}
       </h4>
       <hr className="appointment__separator" />
-</header>
+    </header>
 
   )
 
