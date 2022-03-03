@@ -2,7 +2,7 @@
 
 Scheduler is a single-page interview appointment application.
 
-This repository is the result of my practice and first application in React. Naturally, HTML, CSS3, JS, and AJAX front-end skills were required, as well as Node and Express back-end skills.
+This repository is the result of my practice and first experience with React. Naturally, HTML, CSS3, JS, and AJAX front-end skills were required, as well as Node skills and Jest and Cypress testing skills.
 
 Scheduler was extensively tested using Jest for unit-testing, and Cypress for end-to-end testing. It served as an introduction for me to both.
 
