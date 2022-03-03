@@ -1,23 +1,27 @@
-# Interview Scheduler
+# Scheduler Project
 
-## Setup
+Scheduler is a single-page interview appointment application.
 
-Install dependencies with `npm install`.
+This repository is the result of my practice and first application in React. Naturally, HTML, CSS3, JS, and AJAX front-end skills were required, as well as Node and Express back-end skills.
 
-## Running Webpack Development Server
+Scheduler was extensively tested using Jest for unit-testing, and Cypress for end-to-end testing. It served as an introduction for me to both.
 
-```sh
-npm start
-```
+## Getting Started
 
-## Running Jest Test Framework
+- Install all dependencies (using the npm install command).
+- This project requires scheduler-api and a PostgreSQL database. Run the API server using npm start in that project's root directory.
+- Run the webpack development web server (using the npm start command).
+- Point your browser to localhost:8000 and start booking some interviews!
 
-```sh
-npm test
-```
+## Dependencies
 
-## Running Storybook Visual Testbed
+- React v16.9.0 or above
+- Axios
 
-```sh
-npm run storybook
-```
+## Final Product (Screenshots)
+
+!["Create Appointment"](https://github.com/andrewlpmcneill/scheduler/blob/master/docs/Create.png?raw=true)
+
+!["Update Appointment"](https://github.com/andrewlpmcneill/scheduler/blob/master/docs/Update.png?raw=true)
+
+!["Delete Appointment"](https://github.com/andrewlpmcneill/scheduler/blob/master/docs/Delete.png?raw=true)
