@@ -36,19 +36,14 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    
     return axios.put(`/api/appointments/${id}`, appointment)
       .then(response => {
-
         setState(prev => ({
           ...prev,
           appointments,
-          days: prev.days.map(day => day.appointments.includes(id) ? {...day, spots: day.spots - 1} : day)
+          days: updateSpots(prev, appointments, id)
         }));
-        console.log(response);
-
-        })
-
+      })
   };
 
   const cancelInterview = (id) => {
@@ -68,12 +63,19 @@ export default function useApplicationData() {
         setState(prev => ({
           ...state,
           appointments,
-          days: prev.days.map(day => day.appointments.includes(id) ? {...day, spots: day.spots + 1} : day)
+          days: updateSpots(prev, appointments, id)
         }));
         console.log(response);
         })
 
   }
+
+  const updateSpots = (state, appointments, id) => (
+    state.days.map(day => day.appointments.includes(id) ? {
+      ...day,
+      spots: day.appointments.filter(spot => !appointments[spot].interview).length
+    } : day)
+  );
 
   return { state, setDay, bookInterview, cancelInterview }
 
