@@ -7,6 +7,7 @@ function InterviewerList (props) {
 
   const interviewerItems = props.interviewers.map(item => {
     return (
+
       <InterviewerListItem
         key={item.id}
         name={item.name}
@@ -14,6 +15,7 @@ function InterviewerList (props) {
         selected={item.id === props.value}
         setInterviewer={(event) => props.onChange(item.id)}
       />
+      
     );
   })
 
