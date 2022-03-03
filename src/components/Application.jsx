@@ -7,12 +7,7 @@ import useApplicationData from "hooks/useApplicationData";
 
 export default function Application() {
   
-  const {
-    state,
-    setDay,
-    bookInterview,
-    cancelInterview
-  } = useApplicationData();
+  const { state, setDay, bookInterview, cancelInterview } = useApplicationData();
 
   return (
     <main className="layout">
