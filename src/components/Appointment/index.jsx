@@ -24,6 +24,7 @@ export default function Appointment (props) {
 
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY);
 
+  // When user saves a create or edit, calls DB via axios (via bookInterview()), sets appropriate views and/or catches error
   const save = (name, interviewer) => {
 
     const interview = {
@@ -50,6 +51,7 @@ export default function Appointment (props) {
     transition(EDIT);
   }
 
+  // When user confirms a delete, deletes to DB via axios (via cancelInterview()), sets appropriate views and/or catches error
   const confirm = () => {
 
     transition(DELETING);
