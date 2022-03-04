@@ -49,9 +49,9 @@ export default function Appointment (props) {
   const onEdit = () => {
     transition(EDIT);
   }
-  
+
   const confirm = () => {
-    
+
     transition(DELETING);
 
     props.cancelInterview(props.id)
@@ -61,7 +61,7 @@ export default function Appointment (props) {
       .catch(() => {
         transition(ERROR_DELETE, true);
       })
-    
+
   }
 
   const cancel = () => {
@@ -107,13 +107,13 @@ export default function Appointment (props) {
         <Confirm message="Are you sure you would like to delete?" onConfirm={confirm} onCancel={cancel}/>
       )}
       {mode === ERROR_SAVE && (
-        <Error message="Save unsuccessful." onClose={() => { transition(EMPTY) }}/>
+        <Error message="Save unsuccessful." onClose={() => { transition(CREATE) }}/>
       )}
       {mode === ERROR_DELETE && (
         <Error message="Delete unsuccessful." onClose={() => { transition(SHOW) } }/>
       )}
       {mode === ERROR_EDIT && (
-        <Error message="Edit unsuccessful." onClose={() => { transition(SHOW) } }/>
+        <Error message="Edit unsuccessful." onClose={() => { transition(EDIT) } }/>
       )}
     </article>
 
